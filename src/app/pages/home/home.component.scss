@@ -1,0 +1,71 @@
+.home {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 40px);
+  background:
+    radial-gradient(1200px 600px at 20% -10%, color-mix(in oklab, var(--primary, #2563eb) 12%, transparent) 0%, transparent 50%),
+    radial-gradient(900px 500px at 100% 0%, color-mix(in oklab, var(--primary, #2563eb) 10%, transparent) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-accent, #09131e), var(--bg, #0b0f14));
+  color: var(--text, #e6eaf2);
+
+  &::after {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none;
+    background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--text, #e6eaf2) 6%, transparent) 1px, transparent 0);
+    background-size: 22px 22px;
+    opacity: .25;
+  }
+}
+
+.card {
+  width: min(820px, 100%);
+  background: var(--card, #0f1520);
+  border: 1px solid var(--border, #1f2a3a);
+  border-radius: 18px;
+  padding: clamp(24px, 4vw, 40px);
+  text-align: center;
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+
+  h1 {
+    margin: 0 0 10px;
+    font-size: clamp(26px, 4.2vw, 40px);
+    font-weight: 800;
+    letter-spacing: .2px;
+  }
+  .subtitle { margin: 0; color: var(--muted, #a4afc0); font-size: clamp(14px, 2.2vw, 18px); }
+}
+
+.actions {
+  margin-top: clamp(18px, 3vw, 28px);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+}
+
+/* Botões */
+.btn, a.btn {
+  --ring: color-mix(in oklab, var(--primary, #2563eb) 45%, transparent);
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 44px; padding: 12px 18px;
+  border-radius: 12px; border: 1px solid var(--border, #1f2a3a);
+  background: var(--hover, #192232);
+  color: var(--text, #e6eaf2) !important;
+  text-decoration: none !important; font-weight: 700; line-height: 1;
+  cursor: pointer; user-select: none;
+  transition: transform .05s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    background: color-mix(in oklab, var(--primary, #2563eb) 12%, var(--hover, #192232));
+    border-color: color-mix(in oklab, var(--primary, #2563eb) 35%, var(--border, #1f2a3a));
+  }
+  &:active { transform: translateY(1px); }
+  &:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
+
+  svg { width: 18px; height: 18px; fill: currentColor; }
+}
+
+.btn-primary, a.btn.btn-primary {
+  background: var(--primary, #2563eb);
+  border-color: transparent;
+  color: #fff !important;
+  &:hover { background: var(--primary-600, #1d4ed8); }
+}
