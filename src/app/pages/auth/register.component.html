@@ -1,0 +1,17 @@
+<div class="auth">
+  <div class="card">
+    <h1>Criar conta</h1>
+    <form (ngSubmit)="onSubmit()" novalidate>
+      <label>
+        E-mail
+        <input type="email" name="email" [(ngModel)]="email" required />
+      </label>
+      <label>
+        Senha
+        <input type="password" name="senha" [(ngModel)]="senha" required />
+      </label>
+      <button type="submit" [disabled]="loading">Cadastrar</button>
+    </form>
+    <a routerLink="/login">Já tenho conta</a>
+  </div>
+</div>

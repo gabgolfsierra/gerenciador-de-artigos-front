@@ -1,0 +1,71 @@
+.wrap {
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+h1 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  color: #0f172a;
+}
+.form {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+fieldset {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+}
+legend {
+  font-size: 12px;
+  color: #475569;
+  padding: 0 6px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #374151;
+  font-size: 13px;
+  grid-column: span 12;
+}
+input, select, textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+  background: #f8fafc;
+}
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+.wide { grid-column: span 12; }
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+button {
+  background: #2563eb;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+@media (min-width: 720px) {
+  label { grid-column: span 4; }
+  .wide { grid-column: span 12; }
+}

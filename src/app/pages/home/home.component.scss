@@ -69,3 +69,8 @@
   color: #fff !important;
   &:hover { background: var(--primary-600, #1d4ed8); }
 }
+
+.modal {
+  width: 800px;
+  height: 600px;
+}

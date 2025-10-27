@@ -1,0 +1,65 @@
+.auth {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: #0f172a;
+  padding: 24px;
+}
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.15);
+}
+h1 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  color: #0f172a;
+  text-align: center;
+}
+form {
+  display: grid;
+  gap: 12px;
+}
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: #334155;
+}
+input {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+}
+input:focus {
+  border-color: #2563eb;
+}
+button {
+  margin-top: 4px;
+  background: #2563eb;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+button[disabled] {
+  opacity: .6;
+  cursor: not-allowed;
+}
+a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+}
+a:hover { text-decoration: underline; }

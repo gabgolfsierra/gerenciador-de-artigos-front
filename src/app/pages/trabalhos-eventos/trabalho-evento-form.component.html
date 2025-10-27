@@ -1,0 +1,178 @@
+<div class="wrap">
+  <h1>Trabalho completo em anais de evento</h1>
+
+  <form class="form" (ngSubmit)="onSubmit()" novalidate>
+    <fieldset>
+      <legend>Identificação</legend>
+      <div class="grid">
+        <label class="wide">
+          Título do trabalho
+          <input type="text" name="titulo" [(ngModel)]="trabalho.titulo" required />
+        </label>
+
+        <label>
+          Ano de publicação
+          <input type="text" name="anoPublicacao" [(ngModel)]="trabalho.anoPublicacao" inputmode="numeric" pattern="[0-9]{4}" placeholder="YYYY" />
+        </label>
+
+        <label>
+          Idioma
+          <select name="idioma" [(ngModel)]="trabalho.idioma">
+            <option value="">Selecione</option>
+            <option value="pt">Português</option>
+            <option value="en">Inglês</option>
+          </select>
+        </label>
+
+        <label>
+          DOI
+          <input type="text" name="doi" [(ngModel)]="trabalho.doi" placeholder="10.xxxx/xxxxx" />
+        </label>
+
+        <label class="wide">
+          URL
+          <input type="url" name="url" [(ngModel)]="trabalho.url" placeholder="https://..." />
+        </label>
+
+        <label>
+          Meio de divulgação
+          <select name="meioDivulgacao" [(ngModel)]="trabalho.meioDivulgacao">
+            <option value="">Selecione</option>
+            <option value="IMPRESSO">Impresso</option>
+            <option value="ELETRONICO">Eletrônico</option>
+            <option value="IMPRESSO_E_ELETRONICO">Impresso e Eletrônico</option>
+          </select>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Autores</legend>
+      <div class="grid">
+        <label>
+          Autor – Nome
+          <input type="text" name="autorNome" [(ngModel)]="trabalho.autor.nome" />
+        </label>
+        <label>
+          Autor – Sobrenome
+          <input type="text" name="autorSobrenome" [(ngModel)]="trabalho.autor.sobrenome" />
+        </label>
+
+        <label>
+          Coautor – Nome
+          <input type="text" name="coautorNome" [(ngModel)]="trabalho.coautor.nome" />
+        </label>
+        <label>
+          Coautor – Sobrenome
+          <input type="text" name="coautorSobrenome" [(ngModel)]="trabalho.coautor.sobrenome" />
+        </label>
+
+        <label>
+          Orientador – Nome
+          <input type="text" name="orientadorNome" [(ngModel)]="trabalho.orientador.nome" />
+        </label>
+        <label>
+          Orientador – Sobrenome
+          <input type="text" name="orientadorSobrenome" [(ngModel)]="trabalho.orientador.sobrenome" />
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Evento</legend>
+      <div class="grid">
+        <label class="wide">
+          Nome do evento
+          <input type="text" name="nomeEvento" [(ngModel)]="trabalho.nomeEvento" />
+        </label>
+
+        <label class="wide">
+          Nome do evento (inglês)
+          <input type="text" name="nomeEventoIngles" [(ngModel)]="trabalho.nomeEventoIngles" />
+        </label>
+
+        <label>
+          Cidade
+          <input type="text" name="cidadeEvento" [(ngModel)]="trabalho.cidadeEvento" />
+        </label>
+
+        <label>
+          País
+          <input type="text" name="paisEvento" [(ngModel)]="trabalho.paisEvento" />
+        </label>
+
+        <label>
+          Ano do evento
+          <input type="text" name="anoEvento" [(ngModel)]="trabalho.anoEvento" inputmode="numeric" pattern="[0-9]{4}" placeholder="YYYY" />
+        </label>
+
+        <label class="wide">
+          Título dos anais
+          <input type="text" name="tituloAnais" [(ngModel)]="trabalho.tituloAnais" />
+        </label>
+
+        <label>
+          ISSN/ISBN
+          <input type="text" name="issnIsbn" [(ngModel)]="trabalho.issnIsbn" />
+        </label>
+
+        <label>
+          Volume
+          <input type="text" name="volume" [(ngModel)]="trabalho.volume" />
+        </label>
+
+        <label>
+          Página inicial
+          <input type="text" name="paginaInicial" [(ngModel)]="trabalho.paginaInicial" />
+    </label>
+
+        <label>
+          Página final
+          <input type="text" name="paginaFinal" [(ngModel)]="trabalho.paginaFinal" />
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Classificações</legend>
+      <div class="grid">
+        <label class="wide">
+          Palavras-chave (separe por vírgula)
+          <input type="text" name="palavrasChave" [(ngModel)]="keywordsInput" placeholder="IA, visão computacional, NLP" />
+        </label>
+
+        <label>
+          Grande área CNPq
+          <input type="text" name="grandeArea" [(ngModel)]="areasGrande" />
+        </label>
+        <label>
+          Área
+          <input type="text" name="area" [(ngModel)]="areasArea" />
+        </label>
+        <label>
+          Subárea
+          <input type="text" name="subarea" [(ngModel)]="areasSub" />
+        </label>
+
+        <label class="wide">
+          Setores de atividade (vírgula)
+          <input type="text" name="setoresAtividade" [(ngModel)]="setoresInput" placeholder="Educação, Saúde, TIC" />
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Observações</legend>
+      <div class="grid">
+        <label class="wide">
+          Observações
+          <textarea name="observacoes" [(ngModel)]="trabalho.observacoes" placeholder="Informações adicionais relevantes"></textarea>
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" [disabled]="loading">Salvar trabalho</button>
+    </div>
+  </form>
+</div>
