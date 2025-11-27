@@ -1,0 +1,107 @@
+<div class="wrap">
+  <header class="header">
+    <div class="title-block">
+      <h1>Trabalhos em Anais de Evento</h1>
+      <p class="subtitle">
+        Visualize todos os trabalhos completos cadastrados em anais de eventos.
+      </p>
+    </div>
+
+    <div class="header-actions">
+      <button
+        type="button"
+        class="btn-secondary"
+        (click)="reload()"
+        [disabled]="loading"
+      >
+        Recarregar
+      </button>
+    </div>
+  </header>
+
+  <section class="content">
+    <div class="state state-loading" *ngIf="loading">
+      <div class="spinner"></div>
+      <span>Carregando trabalhos...</span>
+    </div>
+
+    <div class="state state-error" *ngIf="!loading && error">
+      {{ error }}
+    </div>
+
+    <div class="state state-empty" *ngIf="!loading && !error && !trabalhos.length">
+      <p>Nenhum trabalho cadastrado até o momento.</p>
+      <span>Cadastre um novo trabalho para começar a preencher esta lista.</span>
+    </div>
+
+    <div class="list-card" *ngIf="!loading && !error && trabalhos.length">
+      <div class="list-header">
+        <div class="col col-title">Título</div>
+        <div class="col col-evento">Evento</div>
+        <div class="col col-year">Ano</div>
+        <div class="col col-extra">Detalhes</div>
+      </div>
+
+      <div class="list-body">
+        <article
+          class="row"
+          *ngFor="let trabalho of trabalhos; trackBy: trackById"
+        >
+          <div class="col col-title">
+            <h2 class="title">
+              {{ trabalho.titulo || 'Sem título' }}
+            </h2>
+            <p class="meta">
+              {{ trabalho.autor?.nome }} {{ trabalho.autor?.sobrenome }}
+              <span *ngIf="trabalho.anoPublicacao"> · {{ trabalho.anoPublicacao }}</span>
+            </p>
+          </div>
+
+          <div class="col col-evento">
+            <div class="evento">
+              {{ trabalho.nomeEvento || 'Evento não informado' }}
+            </div>
+            <div class="meta small">
+              {{ trabalho.cidadeEvento || 'Cidade não informada' }}
+              <span *ngIf="trabalho.cidadeEvento && trabalho.paisEvento"> · </span>
+              {{ trabalho.paisEvento || '' }}
+            </div>
+          </div>
+
+          <div class="col col-year">
+            <span class="pill">
+              {{ trabalho.anoEvento || '—' }}
+            </span>
+          </div>
+
+          <div class="col col-extra">
+            <div class="meta small">
+              DOI:
+              <span class="value">
+                {{ trabalho.doi || 'não informado' }}
+              </span>
+            </div>
+            <div class="meta small">
+              Meio:
+              <span class="value">
+                {{
+                  trabalho.meioDivulgacao === 'IMPRESSO'
+                    ? 'Impresso'
+                    : trabalho.meioDivulgacao === 'ELETRONICO'
+                    ? 'Eletrônico'
+                    : trabalho.meioDivulgacao === 'IMPRESSO_E_ELETRONICO'
+                    ? 'Impresso e Eletrônico'
+                    : 'Não informado'
+                }}
+              </span>
+            </div>
+            <div class="meta small" *ngIf="trabalho.tituloAnais">
+              Anais:
+              <span class="value">{{ trabalho.tituloAnais }}</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>

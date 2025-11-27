@@ -1,0 +1,79 @@
+<div class="wrap">
+  <header class="header">
+    <div class="title-block">
+      <h1>Artigos em Periódicos</h1>
+      <p class="subtitle">
+        Visualize todos os artigos cadastrados em periódicos.
+      </p>
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="btn-secondary" (click)="reload()" [disabled]="loading">
+        Recarregar
+      </button>
+    </div>
+  </header>
+
+  <section class="content">
+    <div class="state state-loading" *ngIf="loading">
+      <div class="spinner"></div>
+      <span>Carregando artigos...</span>
+    </div>
+
+    <div class="state state-error" *ngIf="!loading && error">
+      {{ error }}
+    </div>
+
+    <div class="state state-empty" *ngIf="!loading && !error && !artigos.length">
+      <p>Nenhum artigo cadastrado até o momento.</p>
+      <span>Cadastre um novo artigo para começar a preencher esta lista.</span>
+    </div>
+
+    <div class="list-card" *ngIf="!loading && !error && artigos.length">
+      <div class="list-header">
+        <div class="col col-title">Título</div>
+        <div class="col col-periodico">Periódico</div>
+        <div class="col col-year">Ano</div>
+        <div class="col col-doi">DOI</div>
+      </div>
+
+      <div class="list-body">
+        <article
+          class="row"
+          *ngFor="let artigo of artigos; trackBy: trackById"
+        >
+          <div class="col col-title">
+            <h2 class="title">{{ artigo.titulo || 'Sem título' }}</h2>
+            <p class="meta">
+              {{ artigo.idioma === 'en' ? 'Inglês' : artigo.idioma === 'pt' ? 'Português' : 'Idioma não informado' }}
+            </p>
+          </div>
+
+          <div class="col col-periodico">
+            <div class="periodico">
+              {{ artigo.tituloPeriodico || '—' }}
+            </div>
+            <div class="meta small">
+              ISSN: {{ artigo.issn || '—' }}
+            </div>
+          </div>
+
+          <div class="col col-year">
+            <span class="pill">
+              {{ artigo.anoPublicacao || '—' }}
+            </span>
+          </div>
+
+          <div class="col col-doi">
+            <div class="doi" *ngIf="artigo.doi; else semDoi">
+              {{ artigo.doi }}
+            </div>
+            <ng-template #semDoi>
+              <span class="meta small">DOI não informado</span>
+            </ng-template>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
