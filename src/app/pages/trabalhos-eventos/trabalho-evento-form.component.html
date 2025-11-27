@@ -1,7 +1,8 @@
 <div class="wrap">
-  <h1>Trabalho completo em anais de evento</h1>
+  <h1>Trabalho Completo em Anais de Evento</h1>
 
   <form class="form" (ngSubmit)="onSubmit()" novalidate>
+    <!-- IDENTIFICAÇÃO -->
     <fieldset>
       <legend>Identificação</legend>
       <div class="grid">
@@ -12,7 +13,8 @@
 
         <label>
           Ano de publicação
-          <input type="text" name="anoPublicacao" [(ngModel)]="trabalho.anoPublicacao" inputmode="numeric" pattern="[0-9]{4}" placeholder="YYYY" />
+          <input type="text" name="anoPublicacao" [(ngModel)]="trabalho.anoPublicacao" inputmode="numeric"
+            pattern="[0-9]{4}" placeholder="YYYY" />
         </label>
 
         <label>
@@ -46,6 +48,7 @@
       </div>
     </fieldset>
 
+    <!-- AUTORES -->
     <fieldset>
       <legend>Autores</legend>
       <div class="grid">
@@ -53,6 +56,7 @@
           Autor – Nome
           <input type="text" name="autorNome" [(ngModel)]="trabalho.autor.nome" />
         </label>
+
         <label>
           Autor – Sobrenome
           <input type="text" name="autorSobrenome" [(ngModel)]="trabalho.autor.sobrenome" />
@@ -62,6 +66,7 @@
           Coautor – Nome
           <input type="text" name="coautorNome" [(ngModel)]="trabalho.coautor.nome" />
         </label>
+
         <label>
           Coautor – Sobrenome
           <input type="text" name="coautorSobrenome" [(ngModel)]="trabalho.coautor.sobrenome" />
@@ -71,6 +76,7 @@
           Orientador – Nome
           <input type="text" name="orientadorNome" [(ngModel)]="trabalho.orientador.nome" />
         </label>
+
         <label>
           Orientador – Sobrenome
           <input type="text" name="orientadorSobrenome" [(ngModel)]="trabalho.orientador.sobrenome" />
@@ -78,6 +84,7 @@
       </div>
     </fieldset>
 
+    <!-- EVENTO -->
     <fieldset>
       <legend>Evento</legend>
       <div class="grid">
@@ -103,7 +110,8 @@
 
         <label>
           Ano do evento
-          <input type="text" name="anoEvento" [(ngModel)]="trabalho.anoEvento" inputmode="numeric" pattern="[0-9]{4}" placeholder="YYYY" />
+          <input type="text" name="anoEvento" [(ngModel)]="trabalho.anoEvento" inputmode="numeric" pattern="[0-9]{4}"
+            placeholder="YYYY" />
         </label>
 
         <label class="wide">
@@ -124,7 +132,7 @@
         <label>
           Página inicial
           <input type="text" name="paginaInicial" [(ngModel)]="trabalho.paginaInicial" />
-    </label>
+        </label>
 
         <label>
           Página final
@@ -133,22 +141,26 @@
       </div>
     </fieldset>
 
+    <!-- CLASSIFICAÇÕES -->
     <fieldset>
       <legend>Classificações</legend>
       <div class="grid">
         <label class="wide">
           Palavras-chave (separe por vírgula)
-          <input type="text" name="palavrasChave" [(ngModel)]="keywordsInput" placeholder="IA, visão computacional, NLP" />
+          <input type="text" name="palavrasChave" [(ngModel)]="keywordsInput"
+            placeholder="IA, visão computacional, NLP" />
         </label>
 
         <label>
           Grande área CNPq
           <input type="text" name="grandeArea" [(ngModel)]="areasGrande" />
         </label>
+
         <label>
           Área
           <input type="text" name="area" [(ngModel)]="areasArea" />
         </label>
+
         <label>
           Subárea
           <input type="text" name="subarea" [(ngModel)]="areasSub" />
@@ -161,18 +173,23 @@
       </div>
     </fieldset>
 
+    <!-- OBSERVAÇÕES -->
     <fieldset>
       <legend>Observações</legend>
       <div class="grid">
         <label class="wide">
           Observações
-          <textarea name="observacoes" [(ngModel)]="trabalho.observacoes" placeholder="Informações adicionais relevantes"></textarea>
+          <textarea name="observacoes" [(ngModel)]="trabalho.observacoes"
+            placeholder="Informações adicionais relevantes"></textarea>
         </label>
       </div>
     </fieldset>
 
+    <!-- BOTÃO -->
     <div class="actions">
-      <button type="submit" [disabled]="loading">Salvar trabalho</button>
+      <button type="submit" [disabled]="loading">
+        Salvar trabalho
+      </button>
     </div>
   </form>
 </div>

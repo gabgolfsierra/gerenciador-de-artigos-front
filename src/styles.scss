@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #163353;
+  --primary-soft: color-mix(in oklab, var(--primary) 18%, transparent);
+  --primary-strong: color-mix(in oklab, var(--primary) 60%, #020617);
+  --bg: #3A6073;
+  --bg-accent: #16222A;
+  --card: rgba(15, 23, 42, 0.92);
+  --card-elevated: rgba(15, 23, 42, 0.98);
+  --border-subtle: rgba(148, 163, 184, 0.28);
+  --border-strong: rgba(129, 140, 248, 0.85);
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+
+}

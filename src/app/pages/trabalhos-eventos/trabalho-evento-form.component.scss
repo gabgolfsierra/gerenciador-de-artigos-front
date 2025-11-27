@@ -1,71 +1,271 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #16222A;
+  background: -webkit-linear-gradient(to bottom, #3A6073, #16222A);
+  background: linear-gradient(to bottom, #3A6073, #16222A);
+}
+
 .wrap {
-  max-width: 980px;
-  margin: 24px auto;
-  padding: 0 16px;
-}
-h1 {
-  margin: 0 0 12px;
-  font-size: 22px;
-  color: #0f172a;
-}
-.form {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 16px;
-  display: grid;
-  gap: 16px;
-}
-fieldset {
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 12px;
-}
-legend {
-  font-size: 12px;
-  color: #475569;
-  padding: 0 6px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 12px;
-}
-label {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  min-height: 80vh;
+
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  color: #374151;
-  font-size: 13px;
-  grid-column: span 12;
+  justify-content: center;
+  gap: 20px;
 }
-input, select, textarea {
-  border: 1px solid #cbd5e1;
+
+/* Título */
+.wrap>h1 {
+  font-size: clamp(24px, 3vw, 30px);
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* FORM = card central com scroll interno */
+.form {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  border-radius: 20px;
+  padding: 20px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background: #16222A;
+  background: -webkit-linear-gradient(to right, #3A6073, #16222A);
+  background: linear-gradient(to right, #2b4350, #16222A);
+
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.35);
+
+  /* altura controlada + scroll dentro do card */
+  max-height: min(72vh, 720px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* highlight discreto na borda */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    pointer-events: none;
+    background: radial-gradient(800px 400px at 50% -15%,
+        rgba(37, 99, 235, 0.20),
+        transparent 70%);
+    z-index: 0;
+  }
+
+  >* {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* scrollbar interna */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.8);
+    border-radius: 700px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* FIELDSETS */
+.form fieldset {
+  border-radius: 20px;
+  padding: 14px 14px 12px;
+  margin: 0;
+  border: 1px solid #d3d9e6;
+  background: var(--surface-soft);
+  color: rgb(0, 212, 28);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form legend {
+  font-size: 15px;
+  color: var(--text-muted);
+  padding: 0 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(229, 255, 0, 0.856);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+/* GRID */
+.form .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.form .grid .wide {
+  grid-column: 1 / -1;
+  color: white;
+}
+
+/* LABELS */
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+/* CAMPOS */
+.form input,
+.form select,
+.form textarea {
+  appearance: none;
   border-radius: 10px;
-  padding: 10px;
-  font-size: 14px;
+  padding: 9px 11px;
+  font-size: 15px;
+  font-family: inherit;
+  line-height: 1.4;
   outline: none;
-  background: #f8fafc;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+  color: black;
+
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    transform 0.08s ease;
+
+  &::placeholder {
+    color: rgba(148, 163, 184, 0.9);
+  }
+
+  &:hover {
+    background: #f3f4f6;
+    border-color: #94a3b8;
+  }
+
+  &:focus {
+    background: #ffffff;
+    border-color: var(--accent);
+    box-shadow:
+      0 0 0 1px #ffffff,
+      0 0 0 3px rgba(37, 99, 235, 0.25);
+    transform: translateY(-0.5px);
+  }
+
+  &:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+  }
 }
-textarea {
-  min-height: 96px;
+
+
+.form textarea {
+  min-height: 90px;
   resize: vertical;
 }
-.wide { grid-column: span 12; }
+
+/* SELECT – setinha custom */
+.form select {
+  padding-right: 32px;
+  background-image: linear-gradient(45deg, transparent 50%, #64748b 55%),
+    linear-gradient(135deg, #64748b 45%, transparent 50%);
+  background-position:
+    right 10px center,
+    right 5px center;
+  background-size: 7px 7px;
+  background-repeat: no-repeat;
+}
+
+/* AÇÕES */
 .actions {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
 }
-button {
-  background: #2563eb;
-  color: #fff;
+
+/* BOTÃO PRINCIPAL */
+.actions button {
+  background: linear-gradient(135deg, var(--accent), #4f46e5);
+  color: #00ff37;
   border: 0;
-  border-radius: 10px;
-  padding: 10px 16px;
-  font-weight: 700;
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
-}
-@media (min-width: 720px) {
-  label { grid-column: span 4; }
-  .wide { grid-column: span 12; }
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  box-shadow:
+    0 12px 28px rgba(37, 99, 235, 0.35),
+    0 0 0 1px rgba(0, 13, 43, 0.06);
+
+  transition:
+    transform 0.07s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+
+   &:hover {
+    background: linear-gradient(135deg, var(--accent-hover), #25eb50);
+    transform: translateY(-1px);
+    box-shadow:
+      0 16px 36px rgba(18, 207, 97, 0.45),
+      0 0 0 1px rgba(15, 23, 42, 0.08);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      0 9px 22px rgba(37, 235, 53, 0.32),
+      0 0 0 1px rgba(15, 23, 42, 0.1);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 1px #ffffff,
+      0 0 0 3px rgba(37, 99, 235, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    box-shadow: none;
+  }
 }

@@ -1,170 +1,266 @@
-:root {
-  --bg: #e9eef3;
-  --card: #ffffff;
-  --line: #d1d5db;
-  --ink: #0f172a;
-  --muted: #475569;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #16222A;
+  background: -webkit-linear-gradient(to bottom, #3A6073, #16222A);
+  background: linear-gradient(to bottom, #3A6073, #16222A);
 }
 
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
-  margin: 0;
-  min-height: 100vh;
-}
 
 .wrap {
-  max-width: 760px;
-  margin: 40px auto;
-  padding: 0 16px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  min-height: 80vh;
 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }
 
-h1 {
-  font-size: 22px;
-  margin: 0 0 20px;
-  color: var(--ink);
+/* Título */
+.wrap>h1 {
+  font-size: clamp(24px, 3vw, 30px);
+  margin: 0;
   text-align: center;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .artigo-form {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  border-radius: 20px;
+  padding: 20px 22px 18px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+  gap: 50px;
+  background: #16222A;
+  background: -webkit-linear-gradient(to right, #3A6073, #16222A);
+  background: linear-gradient(to right, #2b4350, #16222A);
 
-  fieldset {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px;
-    margin: 0;
-    background: #fdfdfd;
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.35);
+
+  /* altura controlada + scroll dentro do card */
+  max-height: min(72vh, 720px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* highlight discreto na borda */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    pointer-events: none;
+    background: radial-gradient(800px 400px at 50% -15%,
+        rgba(37, 99, 235, 0.20),
+        transparent 70%);
+    z-index: 0;
   }
 
-  legend {
-    font-size: 12px;
-    color: var(--muted);
-    padding: 0 6px;
-    font-weight: 600;
+  >* {
+    position: relative;
+    z-index: 1;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .wide {
-      grid-column: 1 / -1;
-    }
+  /* scrollbar interna */
+  &::-webkit-scrollbar {
+    width: 10px;
   }
 
-  label {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    color: #1e293b;
-    font-size: 13px;
+  &::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.8);
+    border-radius: 700px;
   }
 
-  input,
-  select,
-  textarea {
-    appearance: none;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 9px 10px;
-    font-size: 14px;
-    background: #d3d3d3;
-    color: var(--ink);
-    outline: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
 
-    &:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
-      background: #ffffff;
-    }
+.artigo-form fieldset {
+  border-radius: 13px;
+  padding: 14px 14px 12px;
+  margin: 0;
+  border: 1px solid #d3d9e6;
+  background: var(--surface-soft);
+  color: rgba(229, 255, 0, 0.856);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.artigo-form legend {
+  font-size: 15px;
+  color: var(--text-muted);
+  padding: 0 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* GRID */
+.artigo-form .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.artigo-form .grid .wide {
+  grid-column: 1 / -1;
+  color: white;
+}
+
+/* LABELS */
+.artigo-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+/* CAMPOS */
+.artigo-form input,
+.artigo-form select,
+.artigo-form textarea {
+  appearance: none;
+  border-radius: 10px;
+  padding: 9px 11px;
+  font-size: 15px;
+  font-family: inherit;
+  line-height: 1.4;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+  color: black;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    transform 0.08s ease;
+
+  &::placeholder {
+    color: rgba(148, 163, 184, 0.9);
   }
 
-  textarea {
-    min-height: 90px;
-    resize: vertical;
+  &:hover {
+    background: #f3f4f6;
+    border-color: #94a3b8;
   }
 
-  .check {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-
-    input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--accent);
-    }
+  &:focus {
+    background: #ffffff;
+    border-color: var(--accent);
+    box-shadow:
+      0 0 0 1px #ffffff,
+      0 0 0 3px rgba(37, 99, 235, 0.25);
+    transform: translateY(-0.5px);
   }
-.actions {
+
+  &:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+  }
+}
+
+.artigo-form textarea {
+  min-height: 90px;
+  resize: vertical;
+
+}
+
+/* SELECT – setinha custom */
+.artigo-form select {
+  padding-right: 32px;
+  background-image: linear-gradient(45deg, transparent 50%, #64748b 55%),
+    linear-gradient(135deg, #64748b 45%, transparent 50%);
+  background-position:
+    right 10px center,
+    right 5px center;
+  background-size: 7px 7px;
+  background-repeat: no-repeat;
+}
+
+/* AÇÕES */
+.artigo-form .actions {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
 }
-button {
-  background: #2563eb;
-  color: #fff;
+
+/* BOTÃO PRINCIPAL */
+.artigo-form button {
+  background: linear-gradient(135deg, var(--accent), #4f46e5);
+  color: #00ff37;
   border: 0;
-  border-radius: 10px;
-  padding: 10px 16px;
-  font-weight: 700;
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
-}
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 38px;
-    padding: 0 16px;
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
+  box-shadow:
+    0 12px 28px rgba(37, 99, 235, 0.35),
+    0 0 0 1px rgba(0, 13, 43, 0.06);
 
-    &.primary {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
+  transition:
+    transform 0.07s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
 
-      &:hover {
-        background: var(--accent-hover);
-      }
-    }
-
-    &.ghost {
-      background: #ffffff;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-
-      &:hover {
-        background: rgba(37, 99, 235, 0.08);
-      }
-    }
+  &:hover {
+    background: linear-gradient(135deg, var(--accent-hover), #25eb50);
+    transform: translateY(-1px);
+    box-shadow:
+      0 16px 36px rgba(18, 207, 97, 0.45),
+      0 0 0 1px rgba(15, 23, 42, 0.08);
   }
 
-  .hint {
-    font-size: 12px;
-    color: var(--muted);
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      0 9px 22px rgba(37, 235, 53, 0.32),
+      0 0 0 1px rgba(15, 23, 42, 0.1);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 1px #ffffff,
+      0 0 0 3px rgba(37, 99, 235, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    box-shadow: none;
   }
 }

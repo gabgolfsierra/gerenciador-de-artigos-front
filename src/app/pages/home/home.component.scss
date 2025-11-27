@@ -1,76 +1,262 @@
+
+
+/* Layout base */
 .home {
-  min-height: 100dvh;
+  height: 90vh;
   display: grid;
   place-items: center;
-  padding: clamp(16px, 3vw, 40px);
+  overflow: hidden; 
+  padding: clamp(20px, 4vw, 56px);
   background:
-    radial-gradient(1200px 600px at 20% -10%, color-mix(in oklab, var(--primary, #2563eb) 12%, transparent) 0%, transparent 50%),
-    radial-gradient(900px 500px at 100% 0%, color-mix(in oklab, var(--primary, #2563eb) 10%, transparent) 0%, transparent 50%),
-    linear-gradient(180deg, var(--bg-accent, #09131e), var(--bg, #0b0f14));
-  color: var(--text, #e6eaf2);
+    radial-gradient(1200px 600px at 4% -10%,
+      color-mix(in oklab, var(--primary) 18%, transparent) 0%,
+      transparent 55%),
+    radial-gradient(900px 500px at 110% 0%,
+      color-mix(in oklab, var(--primary) 10%, transparent) 0%,
+      transparent 55%),
+    radial-gradient(1000px 700px at 50% 120%,
+      color-mix(in oklab, var(--primary) 14%, transparent) 0%,
+      transparent 60%),
+    linear-gradient(180deg, var(--bg-accent), var(--bg));
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
 
   &::after {
     content: '';
-    position: fixed; inset: 0; pointer-events: none;
-    background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--text, #e6eaf2) 6%, transparent) 1px, transparent 0);
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 1px 1px,
+        color-mix(in oklab, var(--text) 4%, transparent) 1px,
+        transparent 0);
     background-size: 22px 22px;
-    opacity: .25;
+    opacity: .22;
+    mix-blend-mode: soft-light;
   }
 }
 
+/* Card principal */
 .card {
-  width: min(820px, 100%);
-  background: var(--card, #0f1520);
-  border: 1px solid var(--border, #1f2a3a);
-  border-radius: 18px;
-  padding: clamp(24px, 4vw, 40px);
+  width: min(880px, 100%);
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
+  border-radius: 24px;
+  padding: clamp(28px, 4.2vw, 44px);
   text-align: center;
-  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+
+  /* brilho suave na borda */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      radial-gradient(800px 500px at 0% 0%,
+        color-mix(in oklab, var(--primary) 36%, transparent) 0,
+        transparent 60%);
+    opacity: .45;
+    mix-blend-mode: soft-light;
+  }
+
+  /* highlight interno */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+  }
 
   h1 {
-    margin: 0 0 10px;
-    font-size: clamp(26px, 4.2vw, 40px);
+    position: relative;
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4.4vw, 42px);
     font-weight: 800;
-    letter-spacing: .2px;
+    letter-spacing: .03em;
+    line-height: 1.05;
+    color: #f9fafb;
+
+    /* pequeno glow atrás do título */
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 45% 18% -35%;
+      background: radial-gradient(circle at 50% 0%,
+          color-mix(in oklab, var(--primary) 34%, transparent) 0,
+          transparent 70%);
+      opacity: .75;
+      filter: blur(26px);
+      z-index: -1;
+    }
   }
-  .subtitle { margin: 0; color: var(--muted, #a4afc0); font-size: clamp(14px, 2.2vw, 18px); }
+
+  .subtitle {
+    margin: 0;
+    color: white;
+    font-size: clamp(14px, 2.1vw, 18px);
+    line-height: 1.5;
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  /* linha sutil entre título e ações quando necessário */
+  .divider {
+    margin: clamp(18px, 3vw, 26px) auto 0;
+    width: min(220px, 70%);
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(148, 163, 184, 0.55),
+        transparent);
+  }
 }
 
+/* Ações / botões */
 .actions {
-  margin-top: clamp(18px, 3vw, 28px);
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  margin-top: clamp(70px, 3.4vw, 90px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+
+ 
 }
 
 /* Botões */
-.btn, a.btn {
-  --ring: color-mix(in oklab, var(--primary, #2563eb) 45%, transparent);
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 44px; padding: 12px 18px;
-  border-radius: 12px; border: 1px solid var(--border, #1f2a3a);
-  background: var(--hover, #192232);
-  color: var(--text, #e6eaf2) !important;
-  text-decoration: none !important; font-weight: 700; line-height: 1;
-  cursor: pointer; user-select: none;
-  transition: transform .05s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+.btn,
+a.btn {
+  --ring: color-mix(in oklab, var(--primary) 50%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  background: radial-gradient(circle at 0% 0%,
+      color-mix(in oklab, var(--primary-soft) 80%, transparent) 0,
+      transparent 55%),
+    linear-gradient(135deg, #020617, #020617 20%, #020617 100%);
+  color: var(--text) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform .07s ease,
+    background .25s ease,
+    border-color .2s ease,
+    box-shadow .25s ease,
+    filter .2s ease;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
   &:hover {
-    background: color-mix(in oklab, var(--primary, #2563eb) 12%, var(--hover, #192232));
-    border-color: color-mix(in oklab, var(--primary, #2563eb) 35%, var(--border, #1f2a3a));
+    background:
+      radial-gradient(circle at 0% 0%,
+        color-mix(in oklab, var(--primary-soft) 90%, transparent) 0,
+        transparent 60%),
+      linear-gradient(135deg, #020617, #020617 40%, #020617 100%);
+    border-color: rgba(129, 140, 248, 0.9);
+    box-shadow:
+      0 0 0 1px rgba(15, 23, 42, 1),
+      0 18px 40px rgba(15, 23, 42, 0.9);
+    transform: translateY(-1px);
   }
-  &:active { transform: translateY(1px); }
-  &:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
 
-  svg { width: 18px; height: 18px; fill: currentColor; }
+  &:active {
+    transform: translateY(1px) scale(.99);
+    filter: brightness(.95);
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.85);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 1px rgba(15, 23, 42, 1),
+      0 0 0 2px var(--border-strong),
+      0 0 0 6px color-mix(in oklab, var(--ring) 80%, transparent);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
 }
 
-.btn-primary, a.btn.btn-primary {
-  background: var(--primary, #2563eb);
+/* Botão primário */
+.btn-primary,
+a.btn.btn-primary {
+  background:
+    radial-gradient(circle at 0% 0%,
+      color-mix(in oklab, #22d3ee 38%, transparent) 0,
+      transparent 55%),
+    linear-gradient(135deg, var(--primary-strong), var(--primary));
   border-color: transparent;
-  color: #fff !important;
-  &:hover { background: var(--primary-600, #1d4ed8); }
+  color: #f9fafb !important;
+  box-shadow:
+    0 16px 40px color-mix(in oklab, var(--primary) 35%, transparent),
+    0 0 0 1px rgba(15, 23, 42, 0.8);
+
+  &:hover {
+    background:
+      radial-gradient(circle at 0% 0%,
+        color-mix(in oklab, #22d3ee 42%, transparent) 0,
+        transparent 60%),
+      linear-gradient(135deg, color-mix(in oklab, var(--primary-strong) 80%, #0b1120), var(--primary));
+    box-shadow:
+      0 18px 48px color-mix(in oklab, var(--primary) 45%, transparent),
+      0 0 0 1px rgba(15, 23, 42, 0.9);
+  }
+
+  &:active {
+    box-shadow:
+      0 9px 26px color-mix(in oklab, var(--primary) 36%, transparent),
+      0 0 0 1px rgba(15, 23, 42, 0.9);
+  }
 }
 
+/* Botão secundário / fantasma */
+.btn-ghost {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(75, 85, 99, 0.9);
+  color: var(--muted) !important;
+
+  &:hover {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(148, 163, 184, 0.9);
+    color: #e5e7eb !important;
+  }
+}
+
+/* Modal mais elegante e responsivo */
 .modal {
-  width: 800px;
-  height: 600px;
+  width: min(860px, 100%);
+  max-height: min(640px, 100dvh - 80px);
+  background: var(--card-elevated);
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  box-shadow:
+    0 28px 90px rgba(15, 23, 42, 0.98),
+    0 0 0 1px rgba(15, 23, 42, 0.85);
+  padding: clamp(24px, 3vw, 32px);
+  overflow: hidden;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 }

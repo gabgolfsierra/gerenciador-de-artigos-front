@@ -1,23 +1,44 @@
-    <section class="home">
-        <div class="card">
-            <h1>Gerenciador de Artigos</h1>
-            <p class="subtitle">Consulte e gerencie seus artigos publicados.</p>
+<section class="home">
+    <div class="card">
+        <h1>Gerenciador de Artigos</h1>
+        <p class="subtitle">Consulte e gerencie seus artigos publicados.</p>
 
-            <div class="actions">
-                <a routerLink="/artigos" class="btn btn-primary" aria-label="Consultar todos os artigos">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M3 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    Cadastrar Artigo em Periódico
-                </a>
+        <!-- AÇÕES: CADASTRAR -->
+        <div class="actions">
+            <a routerLink="/artigos" class="btn btn-primary" aria-label="Cadastrar artigo em periódico">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Cadastrar Artigo em Periódico
+            </a>
 
-                <a routerLink="/trabalhos-eventos" class="btn btn-primary" aria-label="Consultar todos os trabalhos e eventos">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M3 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    Cadastrar Trabalho completo em anais de evento
-                </a>
+            <a routerLink="/trabalhos-eventos" class="btn btn-primary" aria-label="Cadastrar trabalho completo em anais">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Cadastrar Trabalho completo em anais de evento
+            </a>
+        </div>
 
-            </div>
+        <!-- AÇÕES: LISTAR -->
+        <div class="actions">
+            <a routerLink="/listar-artigos" class="btn btn-primary" aria-label="Listar todos os artigos">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Listar Artigos em Periódicos
+            </a>
+
+            <a routerLink="/listar-trabalhos-eventos" class="btn btn-primary" aria-label="Listar trabalhos completos">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Listar Trabalhos completos em anais de evento
+            </a>
+        </div>
+    </div>
+</section>
