@@ -1,13 +1,24 @@
 <div class="wrap">
   <h1>Cadastrar Artigo em Periódico</h1>
 
-  <form class="artigo-form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+  <form
+    class="artigo-form"
+    (ngSubmit)="onSubmit(f)"
+    #f="ngForm"
+    novalidate
+  >
     <fieldset>
       <legend>D.O.I.</legend>
       <div class="grid">
         <label>
           DOI do artigo
-          <input type="text" name="doi" [(ngModel)]="artigo.doi" placeholder="10.xxxx/xxxxx" />
+          <input
+            type="text"
+            name="doi"
+            [(ngModel)]="artigo.doi"
+            placeholder="10.xxxx/xxxxx"
+            required
+          />
         </label>
       </div>
     </fieldset>
@@ -17,17 +28,32 @@
       <div class="grid">
         <label class="wide">
           Título do artigo
-          <input type="text" name="titulo" [(ngModel)]="artigo.titulo" required />
+          <input
+            type="text"
+            name="titulo"
+            [(ngModel)]="artigo.titulo"
+            required
+          />
         </label>
 
         <label>
           Ano
-          <input type="text" name="anoPublicacao" [(ngModel)]="artigo.anoPublicacao" inputmode="numeric" pattern="[0-9]{4}" placeholder="YYYY" />
+          <input
+            type="text"
+            name="anoPublicacao"
+            [(ngModel)]="artigo.anoPublicacao"
+            inputmode="numeric"
+            pattern="[0-9]{4}"
+            placeholder="YYYY"
+          />
         </label>
 
         <label>
           Idioma
-          <select name="idioma" [(ngModel)]="artigo.idioma">
+          <select
+            name="idioma"
+            [(ngModel)]="artigo.idioma"
+          >
             <option value="">Selecione</option>
             <option value="pt">Português</option>
             <option value="en">Inglês</option>
@@ -36,7 +62,10 @@
 
         <label>
           Meio de divulgação
-          <select name="meioDivulgacao" [(ngModel)]="artigo.meioDivulgacao">
+          <select
+            name="meioDivulgacao"
+            [(ngModel)]="artigo.meioDivulgacao"
+          >
             <option value="">Selecione</option>
             <option value="IMPRESSO">Impresso</option>
             <option value="ELETRONICO">Eletrônico</option>
@@ -46,7 +75,12 @@
 
         <label class="wide">
           Home page do trabalho (URL)
-          <input type="url" name="homepageUrl" [(ngModel)]="artigo.homepageUrl" placeholder="https://..." />
+          <input
+            type="url"
+            name="homepageUrl"
+            [(ngModel)]="artigo.homepageUrl"
+            placeholder="https://..."
+          />
         </label>
       </div>
     </fieldset>
@@ -56,42 +90,76 @@
       <div class="grid">
         <label class="wide">
           Título do periódico/revista
-          <input type="text" name="tituloPeriodico" [(ngModel)]="artigo.tituloPeriodico" />
+          <input
+            type="text"
+            name="tituloPeriodico"
+            [(ngModel)]="artigo.tituloPeriodico"
+          />
         </label>
 
         <label>
           ISSN
-          <input type="text" name="issn" [(ngModel)]="artigo.issn" placeholder="1234-5678" />
+          <input
+            type="text"
+            name="issn"
+            [(ngModel)]="artigo.issn"
+            placeholder="1234-5678"
+          />
         </label>
 
         <label>
           Volume
-          <input type="text" name="volume" [(ngModel)]="artigo.volume" />
+          <input
+            type="text"
+            name="volume"
+            [(ngModel)]="artigo.volume"
+          />
         </label>
 
         <label>
           Número
-          <input type="text" name="numero" [(ngModel)]="artigo.numero" />
+          <input
+            type="text"
+            name="numero"
+            [(ngModel)]="artigo.numero"
+          />
         </label>
 
         <label>
           Série
-          <input type="text" name="serie" [(ngModel)]="artigo.serie" />
+          <input
+            type="text"
+            name="serie"
+            [(ngModel)]="artigo.serie"
+          />
         </label>
 
         <label>
           Página inicial
-          <input type="text" name="paginaInicial" [(ngModel)]="artigo.paginaInicial" />
+          <input
+            type="text"
+            name="paginaInicial"
+            [(ngModel)]="artigo.paginaInicial"
+          />
         </label>
 
         <label>
           Página final
-          <input type="text" name="paginaFinal" [(ngModel)]="artigo.paginaFinal" />
+          <input
+            type="text"
+            name="paginaFinal"
+            [(ngModel)]="artigo.paginaFinal"
+          />
         </label>
 
         <label class="wide">
           Número do artigo eletrônico
-          <input type="text" name="artigoEletronico" [(ngModel)]="artigo.artigoEletronico" placeholder="e12345" />
+          <input
+            type="text"
+            name="artigoEletronico"
+            [(ngModel)]="artigo.artigoEletronico"
+            placeholder="e12345"
+          />
         </label>
       </div>
     </fieldset>
@@ -101,25 +169,48 @@
       <div class="grid">
         <label>
           Autor – Nome
-          <input type="text" name="autorNome" [(ngModel)]="artigo.autor!.nome" />
+          <input
+            type="text"
+            name="autorNome"
+            [(ngModel)]="artigo.autor!.nome"
+            required
+          />
         </label>
         <label>
           Autor – Sobrenome
-          <input type="text" name="autorSobrenome" [(ngModel)]="artigo.autor!.sobrenome" />
+          <input
+            type="text"
+            name="autorSobrenome"
+            [(ngModel)]="artigo.autor!.sobrenome"
+            required
+          />
         </label>
 
         <label>
           Coautor – Nome
-          <input type="text" name="coautorNome" [(ngModel)]="artigo.coautor!.nome" />
+          <input
+            type="text"
+            name="coautorNome"
+            [(ngModel)]="artigo.coautor!.nome"
+          />
         </label>
         <label>
           Coautor – Sobrenome
-          <input type="text" name="coautorSobrenome" [(ngModel)]="artigo.coautor!.sobrenome" />
+          <input
+            type="text"
+            name="coautorSobrenome"
+            [(ngModel)]="artigo.coautor!.sobrenome"
+          />
         </label>
 
         <label class="wide">
           Outros autores (nome completo; separe com ponto e vírgula)
-          <input type="text" name="outrosAutoresStr" [(ngModel)]="outrosAutoresStr" placeholder="Coautor A.; Coautor B.; Coautor C." />
+          <input
+            type="text"
+            name="outrosAutoresStr"
+            [(ngModel)]="outrosAutoresStr"
+            placeholder="Coautor A.; Coautor B.; Coautor C."
+          />
         </label>
       </div>
     </fieldset>
@@ -129,7 +220,12 @@
       <div class="grid">
         <label class="wide">
           Palavras-chave (separe por vírgula)
-          <input type="text" name="palavrasChaveStr" [(ngModel)]="keywordsInput" placeholder="IA, aprendizado de máquina, robótica" />
+          <input
+            type="text"
+            name="palavrasChaveStr"
+            [(ngModel)]="keywordsInput"
+            placeholder="IA, aprendizado de máquina, robótica"
+          />
         </label>
       </div>
     </fieldset>
@@ -139,15 +235,29 @@
       <div class="grid">
         <label>
           Grande área
-          <input type="text" name="grandeArea0" [(ngModel)]="artigo.areasCNPq[0].grandeArea" />
+          <input
+            type="text"
+            name="grandeArea0"
+            [(ngModel)]="artigo.areasCNPq[0].grandeArea"
+            required
+          />
         </label>
         <label>
           Área
-          <input type="text" name="area0" [(ngModel)]="artigo.areasCNPq[0].area" />
+          <input
+            type="text"
+            name="area0"
+            [(ngModel)]="artigo.areasCNPq[0].area"
+            required
+          />
         </label>
         <label>
           Subárea
-          <input type="text" name="subarea0" [(ngModel)]="artigo.areasCNPq[0].subarea" />
+          <input
+            type="text"
+            name="subarea0"
+            [(ngModel)]="artigo.areasCNPq[0].subarea"
+          />
         </label>
       </div>
     </fieldset>
@@ -157,7 +267,12 @@
       <div class="grid">
         <label class="wide">
           Setores (separe por vírgula)
-          <input type="text" name="setoresAtividadeStr" [(ngModel)]="setoresInput" placeholder="Educação, Saúde, TIC" />
+          <input
+            type="text"
+            name="setoresAtividadeStr"
+            [(ngModel)]="setoresInput"
+            placeholder="Educação, Saúde, TIC"
+          />
         </label>
       </div>
     </fieldset>
@@ -167,7 +282,11 @@
       <div class="grid">
         <label class="wide">
           Observações
-          <textarea name="outrasInformacoes" [(ngModel)]="artigo.outrasInformacoes" placeholder="Informações adicionais relevantes"></textarea>
+          <textarea
+            name="outrasInformacoes"
+            [(ngModel)]="artigo.outrasInformacoes"
+            placeholder="Informações adicionais relevantes"
+          ></textarea>
         </label>
       </div>
     </fieldset>
@@ -177,11 +296,19 @@
       <div class="grid">
         <label class="wide">
           Title
-          <input type="text" name="tituloIngles" [(ngModel)]="artigo.tituloIngles" />
+          <input
+            type="text"
+            name="tituloIngles"
+            [(ngModel)]="artigo.tituloIngles"
+          />
         </label>
         <label class="wide">
           Other information
-          <textarea name="outrasInformacoesIngles" [(ngModel)]="artigo.outrasInformacoesIngles" placeholder="Additional notes in English"></textarea>
+          <textarea
+            name="outrasInformacoesIngles"
+            [(ngModel)]="artigo.outrasInformacoesIngles"
+            placeholder="Additional notes in English"
+          ></textarea>
         </label>
       </div>
     </fieldset>
@@ -191,21 +318,38 @@
       <div class="grid">
         <label class="wide">
           Instituição
-          <input type="text" name="instituicao" [(ngModel)]="artigo.instituicao" />
+          <input
+            type="text"
+            name="instituicao"
+            [(ngModel)]="artigo.instituicao"
+            required
+          />
         </label>
         <label>
           Orientador – Nome
-          <input type="text" name="orientadorNome" [(ngModel)]="artigo.orientador!.nome" />
+          <input
+            type="text"
+            name="orientadorNome"
+            [(ngModel)]="artigo.orientador!.nome"
+            required
+          />
         </label>
         <label>
           Orientador – Sobrenome
-          <input type="text" name="orientadorSobrenome" [(ngModel)]="artigo.orientador!.sobrenome" />
+          <input
+            type="text"
+            name="orientadorSobrenome"
+            [(ngModel)]="artigo.orientador!.sobrenome"
+            required
+          />
         </label>
       </div>
     </fieldset>
 
     <div class="actions">
-      <button type="submit" [disabled]="loading">Salvar trabalho</button>
+      <button type="submit" [disabled]="loading">
+        Salvar Artigo
+      </button>
     </div>
   </form>
 </div>

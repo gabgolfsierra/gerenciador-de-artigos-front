@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { ArtigoFormComponent } from './pages/artigos-list/artigos-list.component';
+import { ArtigoFormComponent } from './pages/artigos-list/artigos-form.component';
 import { LoginComponent } from './pages/auth/login.component';
 import { RegisterComponent } from './pages/auth/register.component';
 import { TrabalhoEventoFormComponent } from './pages/trabalhos-eventos/trabalho-evento-form.component';

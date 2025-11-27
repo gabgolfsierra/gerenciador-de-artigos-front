@@ -1,7 +1,12 @@
 <div class="wrap">
   <h1>Trabalho Completo em Anais de Evento</h1>
 
-  <form class="form" (ngSubmit)="onSubmit()" novalidate>
+  <form
+    class="form"
+    (ngSubmit)="onSubmit(f)"
+    #f="ngForm"
+    novalidate
+  >
     <!-- IDENTIFICAÇÃO -->
     <fieldset>
       <legend>Identificação</legend>
@@ -13,13 +18,20 @@
 
         <label>
           Ano de publicação
-          <input type="text" name="anoPublicacao" [(ngModel)]="trabalho.anoPublicacao" inputmode="numeric"
-            pattern="[0-9]{4}" placeholder="YYYY" />
+          <input
+            type="text"
+            name="anoPublicacao"
+            [(ngModel)]="trabalho.anoPublicacao"
+            inputmode="numeric"
+            pattern="[0-9]{4}"
+            placeholder="YYYY"
+            required
+          />
         </label>
 
         <label>
           Idioma
-          <select name="idioma" [(ngModel)]="trabalho.idioma">
+          <select name="idioma" [(ngModel)]="trabalho.idioma" required>
             <option value="">Selecione</option>
             <option value="pt">Português</option>
             <option value="en">Inglês</option>
@@ -38,7 +50,7 @@
 
         <label>
           Meio de divulgação
-          <select name="meioDivulgacao" [(ngModel)]="trabalho.meioDivulgacao">
+          <select name="meioDivulgacao" [(ngModel)]="trabalho.meioDivulgacao" required>
             <option value="">Selecione</option>
             <option value="IMPRESSO">Impresso</option>
             <option value="ELETRONICO">Eletrônico</option>
@@ -54,12 +66,12 @@
       <div class="grid">
         <label>
           Autor – Nome
-          <input type="text" name="autorNome" [(ngModel)]="trabalho.autor.nome" />
+          <input type="text" name="autorNome" [(ngModel)]="trabalho.autor.nome" required />
         </label>
 
         <label>
           Autor – Sobrenome
-          <input type="text" name="autorSobrenome" [(ngModel)]="trabalho.autor.sobrenome" />
+          <input type="text" name="autorSobrenome" [(ngModel)]="trabalho.autor.sobrenome" required />
         </label>
 
         <label>
@@ -90,7 +102,7 @@
       <div class="grid">
         <label class="wide">
           Nome do evento
-          <input type="text" name="nomeEvento" [(ngModel)]="trabalho.nomeEvento" />
+          <input type="text" name="nomeEvento" [(ngModel)]="trabalho.nomeEvento" required />
         </label>
 
         <label class="wide">
@@ -100,18 +112,25 @@
 
         <label>
           Cidade
-          <input type="text" name="cidadeEvento" [(ngModel)]="trabalho.cidadeEvento" />
+          <input type="text" name="cidadeEvento" [(ngModel)]="trabalho.cidadeEvento" required />
         </label>
 
         <label>
           País
-          <input type="text" name="paisEvento" [(ngModel)]="trabalho.paisEvento" />
+          <input type="text" name="paisEvento" [(ngModel)]="trabalho.paisEvento" required />
         </label>
 
         <label>
           Ano do evento
-          <input type="text" name="anoEvento" [(ngModel)]="trabalho.anoEvento" inputmode="numeric" pattern="[0-9]{4}"
-            placeholder="YYYY" />
+          <input
+            type="text"
+            name="anoEvento"
+            [(ngModel)]="trabalho.anoEvento"
+            inputmode="numeric"
+            pattern="[0-9]{4}"
+            placeholder="YYYY"
+            required
+          />
         </label>
 
         <label class="wide">
@@ -147,18 +166,22 @@
       <div class="grid">
         <label class="wide">
           Palavras-chave (separe por vírgula)
-          <input type="text" name="palavrasChave" [(ngModel)]="keywordsInput"
-            placeholder="IA, visão computacional, NLP" />
+          <input
+            type="text"
+            name="palavrasChave"
+            [(ngModel)]="keywordsInput"
+            placeholder="IA, visão computacional, NLP"
+          />
         </label>
 
         <label>
           Grande área CNPq
-          <input type="text" name="grandeArea" [(ngModel)]="areasGrande" />
+          <input type="text" name="grandeArea" [(ngModel)]="areasGrande" required />
         </label>
 
         <label>
           Área
-          <input type="text" name="area" [(ngModel)]="areasArea" />
+          <input type="text" name="area" [(ngModel)]="areasArea" required />
         </label>
 
         <label>
@@ -168,7 +191,12 @@
 
         <label class="wide">
           Setores de atividade (vírgula)
-          <input type="text" name="setoresAtividade" [(ngModel)]="setoresInput" placeholder="Educação, Saúde, TIC" />
+          <input
+            type="text"
+            name="setoresAtividade"
+            [(ngModel)]="setoresInput"
+            placeholder="Educação, Saúde, TIC"
+          />
         </label>
       </div>
     </fieldset>
@@ -179,8 +207,11 @@
       <div class="grid">
         <label class="wide">
           Observações
-          <textarea name="observacoes" [(ngModel)]="trabalho.observacoes"
-            placeholder="Informações adicionais relevantes"></textarea>
+          <textarea
+            name="observacoes"
+            [(ngModel)]="trabalho.observacoes"
+            placeholder="Informações adicionais relevantes"
+          ></textarea>
         </label>
       </div>
     </fieldset>
