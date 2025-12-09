@@ -1,0 +1,179 @@
+// ==UserScript==
+// @name         Preencher Lattes - Artigos
+// @namespace    http://preencher-artigos
+// @version      0.8
+// @description  Preenche formulário do Lattes com dados do ArtGen quando solicitado
+// @match        https://lattes.cnpq.br/*
+// @grant        GM_xmlhttpRequest
+// @grant        GM.xmlHttpRequest
+// @grant        GM_registerMenuCommand
+// @connect      localhost
+// ==/UserScript==
+
+(function () {
+  'use strict';
+
+
+  if (window.top !== window.self) return;
+
+  function formatPessoa(p) {
+    if (!p) return null;
+    const nome = p.nome || '';
+    const sobrenome = p.sobrenome || '';
+    if (!nome && !sobrenome) return null;
+    return `${sobrenome.toUpperCase()}, ${nome}`.trim().replace(/^, /, '');
+  }
+
+  function montarAutores(data) {
+    const autores = [];
+
+    const autorPrincipal = formatPessoa(data.autor);
+    if (autorPrincipal) autores.push(autorPrincipal);
+
+    const coautor = formatPessoa(data.coautor);
+    if (coautor) autores.push(coautor);
+
+    if (Array.isArray(data.outrosAutores)) {
+      data.outrosAutores.forEach((p) => {
+        const f = formatPessoa(p);
+        if (f) autores.push(f);
+      });
+    }
+
+    return autores.join('; ');
+  }
+
+  function montarPalavrasChave(data) {
+    if (!Array.isArray(data.palavrasChave)) return '';
+    return data.palavrasChave.join('; ');
+  }
+
+  function fillForm(data) {
+    console.log('JSON original recebido:', data);
+
+    const autoresStr = montarAutores(data);
+    const palavrasStr = montarPalavrasChave(data);
+
+    console.log('Autores formatados:', autoresStr);
+    console.log('Palavras-chave formatadas:', palavrasStr);
+
+    // A PARTIR DAQUI: trocar os seletores pelos reais quando tiver o formulário aberto
+
+    const tituloInput = document.querySelector('input[name="TITULO_ARTIGO"]'); // TODO
+    if (tituloInput && data.titulo) {
+      tituloInput.value = data.titulo;
+    }
+
+    const tituloIngInput = document.querySelector('input[name="TITULO_INGLES"]'); // TODO
+    if (tituloIngInput && data.tituloIngles) {
+      tituloIngInput.value = data.tituloIngles;
+    }
+
+    const anoInput = document.querySelector('input[name="ANO_PUBLICACAO"]'); // TODO
+    if (anoInput && data.anoPublicacao) {
+      anoInput.value = data.anoPublicacao;
+    }
+
+    const idiomaSelect = document.querySelector('select[name="IDIOMA"]'); // TODO
+    if (idiomaSelect && data.idioma) {
+      idiomaSelect.value = data.idioma.toUpperCase();
+    }
+
+    const periodicoInput = document.querySelector('input[name="TITULO_PERIODICO"]'); // TODO
+    if (periodicoInput && data.tituloPeriodico) {
+      periodicoInput.value = data.tituloPeriodico;
+    }
+
+    const issnInput = document.querySelector('input[name="ISSN"]'); // TODO
+    if (issnInput && data.issn) {
+      issnInput.value = data.issn;
+    }
+
+    const volumeInput = document.querySelector('input[name="VOLUME"]'); // TODO
+    if (volumeInput && data.volume) {
+      volumeInput.value = data.volume;
+    }
+
+    const numeroInput = document.querySelector('input[name="NUMERO"]'); // TODO
+    if (numeroInput && data.numero) {
+      numeroInput.value = data.numero;
+    }
+
+    const pagIniInput = document.querySelector('input[name="PAGINA_INICIAL"]'); // TODO
+    const pagFimInput = document.querySelector('input[name="PAGINA_FINAL"]');   // TODO
+    if (pagIniInput && data.paginaInicial) pagIniInput.value = data.paginaInicial;
+    if (pagFimInput && data.paginaFinal)   pagFimInput.value = data.paginaFinal;
+
+    const doiInput = document.querySelector('input[name="DOI"]'); // TODO
+    if (doiInput && data.doi) {
+      doiInput.value = data.doi;
+    }
+
+    const urlInput = document.querySelector('input[name="URL"]'); // TODO
+    if (urlInput && data.homepageUrl) {
+      urlInput.value = data.homepageUrl;
+    }
+
+    const autoresInput = document.querySelector('textarea[name="AUTORES"]'); // TODO
+    if (autoresInput && autoresStr) {
+      autoresInput.value = autoresStr;
+    }
+
+    const palavrasInput = document.querySelector('textarea[name="PALAVRAS_CHAVE"]'); // TODO
+    if (palavrasInput && palavrasStr) {
+      palavrasInput.value = palavrasStr;
+    }
+
+    alert('Tentativa de preenchimento feita. Veja se os campos foram preenchidos corretamente.');
+  }
+
+  function main() {
+    const artigoId = prompt('Digite o ID do artigo no seu sistema (cole o ID copiado do ArtGen):');
+    if (!artigoId) {
+      alert('Nenhum ID informado. Encerrando.');
+      return;
+    }
+
+    const gmXhr =
+      typeof GM_xmlhttpRequest === 'function'
+        ? GM_xmlhttpRequest
+        : typeof GM !== 'undefined' && typeof GM.xmlHttpRequest === 'function'
+        ? GM.xmlHttpRequest
+        : null;
+
+    if (!gmXhr) {
+      alert('GM_xmlhttpRequest / GM.xmlHttpRequest não disponível.');
+      return;
+    }
+
+    gmXhr({
+      method: 'GET',
+      url: 'http://localhost:8080/artigo/' + encodeURIComponent(artigoId),
+      onload: function (response) {
+        if (response.status !== 200) {
+          alert('Erro ao buscar artigo no backend: ' + response.status);
+          return;
+        }
+
+        try {
+          const data = JSON.parse(response.responseText);
+          fillForm(data);
+        } catch (e) {
+          console.error('Erro ao processar JSON:', e, response.responseText);
+          alert('Erro ao interpretar o JSON do backend.');
+        }
+      },
+      onerror: function (err) {
+        console.error('Erro na requisição:', err);
+        alert('Erro na comunicação com o backend.');
+      }
+    });
+  }
+
+  // registra o comando no menu do Tampermonkey
+  if (typeof GM_registerMenuCommand === 'function') {
+    GM_registerMenuCommand('Preencher Lattes com ArtGen', main);
+  } else {
+    console.warn('GM_registerMenuCommand não disponível.');
+  }
+})();

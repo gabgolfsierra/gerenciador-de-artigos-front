@@ -49,11 +49,11 @@
   border: 1px solid rgba(148, 163, 184, 0.7);
   padding: 7px 16px;
   background: rgba(15, 23, 42, 0.85);
+  width: 10em;
   color: #e5e7eb;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -84,7 +84,6 @@
   position: relative;
 }
 
-/* Estados */
 .state {
   border-radius: 18px;
   padding: 20px 18px;
@@ -135,7 +134,6 @@
   }
 }
 
-/* Card da lista */
 .list-card {
   position: relative;
   border-radius: 22px;
@@ -170,7 +168,7 @@
 
 .list-header {
   display: grid;
-  grid-template-columns: 3fr 2fr 0.8fr 2fr;
+  grid-template-columns: 3fr 2fr 0.8fr 2fr 0.9fr;
   gap: 12px;
   padding: 8px 18px 10px;
   font-size: 11px;
@@ -198,7 +196,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: 3fr 2fr 0.8fr 2fr;
+  grid-template-columns: 3fr 2fr 0.8fr 2fr 0.9fr;
   gap: 12px;
   padding: 10px 18px;
   align-items: center;
@@ -220,7 +218,6 @@
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.9);
 }
 
-/* Colunas / texto */
 .col-title .title {
   margin: 0 0 2px;
   font-size: 14px;
@@ -274,7 +271,51 @@
   font-size: 12px;
 }
 
-/* Responsivo */
+.col-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-lattes {
+  border-radius: 999px;
+  border: 1px solid rgba(129, 140, 248, 0.9);
+  padding: 5px 12px;
+  background: radial-gradient(200px 200px at 0% 0%, rgba(79, 70, 229, 0.5), rgba(15, 23, 42, 0.95));
+  color: #e5e7eb;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.9);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.07s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-lattes:hover {
+  background: radial-gradient(220px 220px at 0% 0%, rgba(129, 140, 248, 0.9), rgba(15, 23, 42, 1));
+  border-color: rgba(196, 181, 253, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 1);
+  filter: brightness(1.05);
+}
+
+.btn-lattes:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.9);
+}
+
 @media (max-width: 860px) {
   .list-header {
     display: none;
@@ -289,6 +330,10 @@
 
   .col-year,
   .col-doi {
+    justify-content: flex-start;
+  }
+
+  .col-actions {
     justify-content: flex-start;
   }
 }

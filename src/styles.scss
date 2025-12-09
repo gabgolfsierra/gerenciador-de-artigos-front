@@ -1,9 +1,9 @@
 :root {
   --primary: #163353;
-  --primary-soft: color-mix(in oklab, var(--primary) 18%, transparent);
-  --primary-strong: color-mix(in oklab, var(--primary) 60%, #020617);
-  --bg: #3A6073;
-  --bg-accent: #16222A;
+  --primary-soft: color-mix(in oklab, var(--primary) 40%, transparent);
+  --primary-strong: color-mix(in oklab, var(--primary) 0%, #6366f1);
+  --bg: #020617;
+  --bg-accent: #0f172a;
   --card: rgba(15, 23, 42, 0.92);
   --card-elevated: rgba(15, 23, 42, 0.98);
   --border-subtle: rgba(148, 163, 184, 0.28);

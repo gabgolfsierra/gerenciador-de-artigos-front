@@ -15,7 +15,7 @@ export class ArtigosListComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor(private artigoService: ArtigoService) {}
+  constructor(private artigoService: ArtigoService) { }
 
   ngOnInit(): void {
     this.carregarArtigos();
@@ -41,6 +41,26 @@ export class ArtigosListComponent implements OnInit {
     if (this.loading) return;
     this.carregarArtigos();
   }
+
+  abrirLattes() {
+    window.open('https://lattes.cnpq.br', '_blank');
+  }
+
+  copiarId(id: number | string | undefined) {
+    if (id === undefined || id === null) {
+      alert('Este artigo não possui ID definido.');
+      return;
+    }
+
+    navigator.clipboard.writeText(String(id))
+      .then(() => {
+        alert(`ID copiado para a área de transferência: ${id}`);
+      })
+      .catch(() => {
+        alert('Não foi possível copiar o ID automaticamente. Copie manualmente.');
+      });
+  }
+
 
   trackById(index: number, item: Artigo): any {
     return (item as any).id ?? index;

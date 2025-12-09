@@ -52,7 +52,7 @@
               {{ trabalho.titulo || 'Sem título' }}
             </h2>
             <p class="meta">
-              {{ trabalho.autor?.nome }} {{ trabalho.autor?.sobrenome }}
+              {{ trabalho.autor.nome }} {{ trabalho.autor.sobrenome }}
               <span *ngIf="trabalho.anoPublicacao"> · {{ trabalho.anoPublicacao }}</span>
             </p>
           </div>

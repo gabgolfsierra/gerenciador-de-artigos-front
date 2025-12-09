@@ -35,13 +35,11 @@
         <div class="col col-periodico">Periódico</div>
         <div class="col col-year">Ano</div>
         <div class="col col-doi">DOI</div>
+        <div class="col col-actions">Ações</div>
       </div>
 
       <div class="list-body">
-        <article
-          class="row"
-          *ngFor="let artigo of artigos; trackBy: trackById"
-        >
+        <article class="row" *ngFor="let artigo of artigos; trackBy: trackById">
           <div class="col col-title">
             <h2 class="title">{{ artigo.titulo || 'Sem título' }}</h2>
             <p class="meta">
@@ -72,8 +70,19 @@
               <span class="meta small">DOI não informado</span>
             </ng-template>
           </div>
+          <div class="col col-actions">
+            <button type="button" class="btn-lattes" (click)="abrirLattes()" title="Abrir o Lattes">
+              Lattes
+            </button>
+
+            <button type="button" class="btn-secondary" (click)="copiarId(artigo.id)"
+              title="Copiar ID deste artigo para usar no Lattes">
+              Copiar ID
+            </button>
+          </div>
         </article>
       </div>
+
     </div>
   </section>
 </div>
